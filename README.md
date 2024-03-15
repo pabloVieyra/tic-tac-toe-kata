@@ -1,4 +1,4 @@
-# Tic Tac Toe
+# Tic Tac Toe 🤖
 
 This is the Tic Tac Toe in TypeScript.
 
