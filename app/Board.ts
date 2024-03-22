@@ -25,4 +25,60 @@ export default class Board {
 
     this.positions[x][y] = symbol;
   }
+
+  isGameOver(): boolean {
+    // Check rows
+    for (const row of this.positions) {
+      if (!row[0] || !row[1] || !row[2]) continue;
+      if (row[0] === row[1] && row[1] === row[2]) return true;
+    }
+
+    // Check columns
+    for (let col = 0; col < 3; col++) {
+      if (this.positions.every((cell) => cell[col] === Symbol.O)) {
+        return true;
+      }
+
+      if (this.positions.every((cell) => cell[col] === Symbol.X)) {
+        return true;
+      }
+    }
+
+    // Chec Diagonal
+    if (
+      this.positions[0][0] === Symbol.O &&
+      this.positions[1][1] === Symbol.O &&
+      this.positions[2][2] === Symbol.O
+    ) {
+      return true;
+    }
+
+    if (
+      this.positions[0][0] === Symbol.X &&
+      this.positions[1][1] === Symbol.X &&
+      this.positions[2][2] === Symbol.X
+    ) {
+      return true;
+    }
+
+    if (
+      this.positions[0][2] === Symbol.O &&
+      this.positions[1][1] === Symbol.O &&
+      this.positions[2][0] === Symbol.O
+    ) {
+      return true;
+    }
+
+    if (
+      this.positions[0][2] === Symbol.X &&
+      this.positions[1][1] === Symbol.X &&
+      this.positions[2][0] === Symbol.X
+    ) {
+      return true;
+    }
+
+    // Check all are fill
+
+    return false;
+  }
 }
